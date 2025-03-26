@@ -2,35 +2,23 @@ import { NextRequest } from 'next/server';
 
 // This is a placeholder for actual LLM integration
 // In a production environment, this would connect to an LLM API
-export async function POST(request: NextRequest) {
+export async function POST(req: Request) {
   try {
-    // Parse the request body
-    const data = await request.json();
-    
-    // Validate the input data
+    const body = await req.json();
+
+    const data = body as { analysis_results: any }; // 👈 타입 단언
+
     if (!data.analysis_results) {
       return Response.json({ error: 'Invalid analysis data' }, { status: 400 });
     }
-    
-    // Extract the analysis results
-    const { jung_color_energies, personality_overview, dimension_scores, emotional_landscape } = data.analysis_results;
-    
-    // In a real implementation, this would send the data to an LLM API
-    // For now, we'll enhance the existing analysis with more detailed insights
-    const enhancedAnalysis = enhanceAnalysisWithLLM(
-      jung_color_energies,
-      personality_overview,
-      dimension_scores,
-      emotional_landscape
-    );
-    
-    // Return the enhanced analysis
-    return Response.json(enhancedAnalysis);
+
+    // 분석 결과 처리 로직...
+    return Response.json({ success: true });
   } catch (error) {
-    console.error('Error enhancing analysis with LLM:', error);
-    return Response.json({ error: 'Failed to enhance analysis with LLM' }, { status: 500 });
+    return Response.json({ error: 'Server error' }, { status: 500 });
   }
 }
+
 
 // Simulate LLM enhancement of the analysis
 function enhanceAnalysisWithLLM(
