@@ -4,9 +4,7 @@ import { NextRequest } from 'next/server';
 // In a production environment, this would connect to an LLM API
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-
-    const data = body as { analysis_results: any }; // 👈 타입 단언
+    const data: { analysis_results: any } = await req.json(); // 
 
     if (!data.analysis_results) {
       return Response.json({ error: 'Invalid analysis data' }, { status: 400 });
@@ -18,6 +16,7 @@ export async function POST(req: Request) {
     return Response.json({ error: 'Server error' }, { status: 500 });
   }
 }
+
 
 
 // Simulate LLM enhancement of the analysis
