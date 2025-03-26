@@ -5,16 +5,25 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    const data = body as { analysis_results: any }; // 👈 타입 단언
+    // ✅ 타입 단언으로 타입 오류 해결
+    const colorData = body as { color_ranking: string[] };
 
-    if (!data.analysis_results) {
-      return Response.json({ error: 'Invalid analysis data' }, { status: 400 });
+    // ✅ 유효성 검사
+    if (
+      !colorData.color_ranking ||
+      !Array.isArray(colorData.color_ranking) ||
+      colorData.color_ranking.length < 2
+    ) {
+      return Response.json({ error: 'Invalid color ranking data' }, { status: 400 });
     }
 
-    // 분석 결과 처리 로직...
-    return Response.json({ success: true });
+    // ✅ 분석 로직 실행
+    const analysisResults = analyzeColorPreferences(colorData);
+
+    // ✅ 분석 결과 반환
+    return Response.json(analysisResults);
   } catch (error) {
-    return Response.json({ error: 'Server error' }, { status: 500 });
+    console.error('Error analyzing color preferences:', error);
+    return Response.json({ error: 'Failed to analyze color preferences' }, { status: 500 });
   }
 }
-
