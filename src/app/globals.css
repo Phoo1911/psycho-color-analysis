@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+/* Base styles */
+body {
+  font-family: 'Inter', sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+/* Color ranking styles */
+.color-ranking {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.color-ranking li {
+  cursor: grab;
+  margin-bottom: 8px;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.color-ranking li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sortable-ghost {
+  opacity: 0.4;
+}
+
+.sortable-chosen {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.sortable-drag {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.flash-update {
+  animation: flash 0.3s ease;
+}
+
+@keyframes flash {
+  0% { background-color: rgba(255, 255, 255, 0.1); }
+  50% { background-color: rgba(255, 255, 255, 0.3); }
+  100% { background-color: rgba(255, 255, 255, 0.1); }
+}
+
+/* Section cards */
+.section-card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.section-header {
+  padding: 16px;
+  color: white;
+}
+
+.section-body {
+  padding: 24px;
+  background-color: white;
+}
+
+/* Header colors */
+.jung-header {
+  background-color: #3498db;
+}
+
+.personality-header {
+  background-color: #9b59b6;
+}
+
+.emotional-header {
+  background-color: #e74c3c;
+}
+
+.recommendations-header {
+  background-color: #2ecc71;
+}
+
+/* Energy badges */
+.energy-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.cool-blue {
+  background-color: #3498db;
+}
+
+.earth-green {
+  background-color: #2ecc71;
+}
+
+.sunshine-yellow {
+  background-color: #f1c40f;
+  color: #333;
+}
+
+.fiery-red {
+  background-color: #e74c3c;
+}
+
+/* Dimension chart container */
+.dimension-chart-container {
+  height: 300px;
+  margin-bottom: 24px;
+}
+
+/* Recommendation items */
+.recommendation-item {
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  margin-bottom: 16px;
+}
+
+/* Fade in animation */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Select container with tooltips */
+.select-container {
+  position: relative;
+}
+
+.tooltip-custom {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #333;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  z-index: 100;
+  max-width: 250px;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Emotion grid */
+.emotion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.emotion-check {
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.emotion-check:hover {
+  background-color: #f8f9fa;
+}
+
+/* Tab navigation */
+.nav-tabs .nav-link {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-tabs .nav-link:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.tab-content > .tab-pane {
+  display: none;
+}
+
+.tab-content > .active {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Progress bars */
+.progress {
+  height: 10px;
+  border-radius: 5px;
+  margin-top: 8px;
+}
+
+.progress-bar {
+  transition: width 1s ease;
+}
+
+/* Accordion styling */
+.accordion-button {
+  transition: all 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+  box-shadow: none;
+}
+
+.accordion-collapse {
+  transition: all 0.3s ease;
+}
